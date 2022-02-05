@@ -26,3 +26,9 @@ class Card:
 
     def __ge__(self, other):
         return self._rank >= other._rank
+
+    def getRank(self):
+        return self._rank
+
+    def getSuit(self):
+        return self._suit
