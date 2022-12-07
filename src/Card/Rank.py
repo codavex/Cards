@@ -4,16 +4,16 @@ class Rank:
 
     def _stringify(self):
         if self._rank == 11:
-            return ("J", "Jack")
+            return "J", "Jack"
         elif self._rank == 12:
-            return ("Q", "Queen")
+            return "Q", "Queen"
         elif self._rank == 13:
-            return ("K", "King")
+            return "K", "King"
         elif self._rank == 14:
-            return ("A", "Ace")
+            return "A", "Ace"
         else:
-            s = "%d" % (self._rank)
-            return (s, s)
+            s = "%d" % self._rank
+            return s, s
 
     def __repr__(self):
         return self._stringify()[0]
