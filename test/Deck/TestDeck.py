@@ -1,8 +1,8 @@
 import unittest
-from Deck import Deck
+from src.Deck.Deck import Deck
 
 
-class testDeck(unittest.TestCase):
+class TestDeck(unittest.TestCase):
 
     def test_deck_size_1_a(self):
         deck = Deck()

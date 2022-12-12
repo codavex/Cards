@@ -1,7 +1,7 @@
 import unittest
-from Card import Card
-from Suit import Suit
-from BlackjackHand import BlackjackHand
+from src.Card.Card import Card
+from src.Card.Suit import Suit
+from src.Blackjack.BlackjackHand import BlackjackHand
 
 
 class testDeck(unittest.TestCase):

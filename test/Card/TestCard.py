@@ -1,10 +1,10 @@
 import unittest
-from Card import Card
-from Rank import Rank
-from Suit import Suit
+from src.Card.Card import Card
+from src.Card.Rank import Rank
+from src.Card.Suit import Suit
 
 
-class testCard(unittest.TestCase):
+class TestCard(unittest.TestCase):
 
     def setUp(self):
         self.s = Suit.S

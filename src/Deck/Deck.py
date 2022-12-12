@@ -1,14 +1,14 @@
 import random
 
-from Card import Card
-from Rank import Rank
-from Suit import Suit
+from src.Card.Card import Card
+from src.Card.Rank import Rank
+from src.Card.Suit import Suit
 
 
 class Deck:
-    def __init__(self, numDecks=1):
+    def __init__(self, num_decks=1):
         self._deck = []
-        for i in range(numDecks):
+        for i in range(num_decks):
             for suit in Suit:
                 for value in range(2, 15):
                     c = Card(Rank(value), suit)
