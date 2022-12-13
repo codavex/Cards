@@ -2,7 +2,7 @@ import unittest
 from src.Deck.Deck import Deck
 
 
-class TestDeck(unittest.TestCase):
+class testDeck(unittest.TestCase):
 
     def test_deck_size_1_a(self):
         deck = Deck()
