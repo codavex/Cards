@@ -1,5 +1,5 @@
-from Card import Card
-from Rank import Rank
+from src.Card.Card import Card
+from src.Card.Rank import Rank
 
 
 class BlackjackHand:

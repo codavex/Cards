@@ -1,10 +1,10 @@
 import unittest
-from Card import Card
-from Suit import Suit
-from BlackjackHand import BlackjackHand
+from src.Card.Card import Card
+from src.Card.Suit import Suit
+from src.Blackjack.BlackjackHand import BlackjackHand
 
 
-class testDeck(unittest.TestCase):
+class testBlackjackHand(unittest.TestCase):
 
     def test_hand_score(self):
         hand = BlackjackHand()
@@ -39,7 +39,6 @@ class testDeck(unittest.TestCase):
         hand.draw(Card(14, Suit.H))
         hand.draw(Card(14, Suit.D))
         self.assertEqual(hand.score(), {4, 14})
-
 
         hand = BlackjackHand()
         hand.draw(Card(14, Suit.S))
