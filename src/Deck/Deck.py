@@ -6,7 +6,7 @@ from src.Card.Suit import Suit
 
 
 class Deck:
-    def __init__(self, num_decks=1):
+    def __init__(self, num_decks: int = 1) -> None:
         self._deck = []
         for i in range(num_decks):
             for suit in Suit:
