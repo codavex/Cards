@@ -12,7 +12,7 @@ class testHand(unittest.TestCase):
         self.assertEqual(hole.__str__(), "[]")
         self.assertEqual(hole.__repr__(), "[]")
 
-    def test_enpty_hand(self):
+    def test_pocket_aces_hand(self):
         hole = Hand()
 
         hole.add(Card("AS"))
@@ -21,6 +21,19 @@ class testHand(unittest.TestCase):
         self.assertEqual(hole.size(), 2)
         self.assertEqual(hole.__str__(), "[AS, AC]")
         self.assertEqual(hole.__repr__(), "[AS, AC]")
+
+    def test_hand_4oak(self):
+        hole = Hand()
+        community = Hand()
+
+        hole.add(Card("AS"))
+        hole.add(Card("AC"))
+
+        community.add(Card("AH"))
+        community.add(Card("AD"))
+        community.add(Card("2D"))
+
+        self.assertEqual(hole.rank(community), Rank.FOUR_OAK)
 
 
 if __name__ == '__main__':
