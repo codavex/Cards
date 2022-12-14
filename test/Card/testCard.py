@@ -13,6 +13,7 @@ class testCard(unittest.TestCase):
         self.card_kh = Card(Rank(13), Suit.H)
         self.card_ad = Card(Rank(14), Suit.D)
 
+
     def test_card_repr(self):
         self.assertEqual(repr(self.card_2s), "2S")
         self.assertEqual(repr(self.card_js), "JS")
@@ -78,6 +79,44 @@ class testCard(unittest.TestCase):
         self.assertTrue(self.card_qc == my_card_qh)
         self.assertTrue(self.card_kh == my_card_kc)
         self.assertTrue(self.card_ad == my_card_as)
+
+    def test_construct_from_string(self):
+        card_2s_str = '2S'
+        card_js_str = 'JS'
+        card_qc_str = 'QC'
+        card_kh_str = 'KH'
+        card_ad_str = 'AD'
+        card_td_str = '10D'
+
+        card_2s = Card(card_2s_str)
+        card_js = Card(card_js_str)
+        card_qc = Card(card_qc_str)
+        card_kh = Card(card_kh_str)
+        card_ad = Card(card_ad_str)
+        card_td = Card(card_td_str)
+
+        self.assertEqual(repr(card_2s), card_2s_str)
+        self.assertEqual(repr(card_js), card_js_str)
+        self.assertEqual(repr(card_qc), card_qc_str)
+        self.assertEqual(repr(card_kh), card_kh_str)
+        self.assertEqual(repr(card_ad), card_ad_str)
+        self.assertEqual(repr(card_td), card_td_str)
+
+    def test_bad_card_string_rank_1(self):
+        with self.assertRaises(ValueError) as context:
+            card = Card("1S")
+
+    def test_bad_card_string_rank_15(self):
+        with self.assertRaises(ValueError) as context:
+            card = Card("15S")
+
+    def test_bad_card_string_suit(self):
+        with self.assertRaises(ValueError) as context:
+            card = Card("2T")
+
+    def test_bad_card_string_too_long(self):
+        with self.assertRaises(ValueError) as context:
+            card = Card("2 of Spades")
 
 
 if __name__ == '__main__':
