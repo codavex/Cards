@@ -7,7 +7,7 @@ class Rank:
                      7: '7', 8: '8', 9: '9', 10: '10',
                      11: 'J', 12: 'Q', 13: 'K', 14: 'A'}
 
-    def __init__(self, rank):
+    def __init__(self, rank: int) -> None:
         if rank in range(2, 15):
             self._rank = rank
             return

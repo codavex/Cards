@@ -1,5 +1,9 @@
+from src.Card.Rank import Rank
+from src.Card.Suit import Suit
+
+
 class Card:
-    def __init__(self, rank, suit):
+    def __init__(self, rank: Rank, suit: Suit) -> None:
         self._rank = rank
         self._suit = suit
 
