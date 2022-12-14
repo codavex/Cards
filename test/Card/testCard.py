@@ -34,7 +34,7 @@ class testCard(unittest.TestCase):
         self.assertTrue(self.card_qc > self.card_js)
         self.assertTrue(self.card_js > self.card_2s)
 
-    def test_rank_ge(self):
+    def test_card_ge(self):
         self.assertTrue(self.card_ad >= self.card_ad)
         self.assertTrue(self.card_ad >= self.card_kh)
         self.assertTrue(self.card_kh >= self.card_kh)
@@ -51,7 +51,7 @@ class testCard(unittest.TestCase):
         self.assertTrue(self.card_qc < self.card_kh)
         self.assertTrue(self.card_kh < self.card_ad)
 
-    def test_rank_lt(self):
+    def test_card_le(self):
         self.assertTrue(self.card_2s <= self.card_2s)
         self.assertTrue(self.card_2s <= self.card_js)
         self.assertTrue(self.card_js <= self.card_js)
@@ -67,7 +67,7 @@ class testCard(unittest.TestCase):
         self.assertTrue(self.card_qc != self.card_kh)
         self.assertTrue(self.card_kh != self.card_ad)
 
-    def test_rank_eq(self):
+    def test_card_eq(self):
         my_card_2d = Card(Rank(2), Suit.D)
         my_card_jd = Card(Rank(11), Suit.D)
         my_card_qh = Card(Rank(12), Suit.H)

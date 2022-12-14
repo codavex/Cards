@@ -47,7 +47,7 @@ class testRank(unittest.TestCase):
         self.assertTrue(self.rank_q < self.rank_k)
         self.assertTrue(self.rank_k < self.rank_a)
 
-    def test_rank_lt(self):
+    def test_rank_le(self):
         self.assertTrue(self.rank_2 <= self.rank_2)
         self.assertTrue(self.rank_2 <= self.rank_j)
         self.assertTrue(self.rank_j <= self.rank_j)
