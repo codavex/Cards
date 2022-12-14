@@ -33,15 +33,51 @@ class testCard(unittest.TestCase):
         self.assertTrue(self.card_qc > self.card_js)
         self.assertTrue(self.card_js > self.card_2s)
 
+    def test_rank_ge(self):
+        self.assertTrue(self.card_ad >= self.card_ad)
+        self.assertTrue(self.card_ad >= self.card_kh)
+        self.assertTrue(self.card_kh >= self.card_kh)
+        self.assertTrue(self.card_kh >= self.card_qc)
+        self.assertTrue(self.card_qc >= self.card_qc)
+        self.assertTrue(self.card_qc >= self.card_js)
+        self.assertTrue(self.card_js >= self.card_js)
+        self.assertTrue(self.card_js >= self.card_2s)
+        self.assertTrue(self.card_2s >= self.card_2s)
+
+    def test_card_lt(self):
         self.assertTrue(self.card_2s < self.card_js)
         self.assertTrue(self.card_js < self.card_qc)
         self.assertTrue(self.card_qc < self.card_kh)
         self.assertTrue(self.card_kh < self.card_ad)
 
+    def test_rank_lt(self):
+        self.assertTrue(self.card_2s <= self.card_2s)
+        self.assertTrue(self.card_2s <= self.card_js)
+        self.assertTrue(self.card_js <= self.card_js)
+        self.assertTrue(self.card_js <= self.card_qc)
+        self.assertTrue(self.card_qc <= self.card_qc)
+        self.assertTrue(self.card_qc <= self.card_kh)
+        self.assertTrue(self.card_kh <= self.card_kh)
+        self.assertTrue(self.card_kh <= self.card_ad)
+
+    def test_card_ne(self):
         self.assertTrue(self.card_2s != self.card_js)
         self.assertTrue(self.card_js != self.card_qc)
         self.assertTrue(self.card_qc != self.card_kh)
         self.assertTrue(self.card_kh != self.card_ad)
+
+    def test_rank_eq(self):
+        my_card_2d = Card(Rank(2), Suit.D)
+        my_card_jd = Card(Rank(11), Suit.D)
+        my_card_qh = Card(Rank(12), Suit.H)
+        my_card_kc = Card(Rank(13), Suit.C)
+        my_card_as = Card(Rank(14), Suit.S)
+
+        self.assertTrue(self.card_2s == my_card_2d)
+        self.assertTrue(self.card_js == my_card_jd)
+        self.assertTrue(self.card_qc == my_card_qh)
+        self.assertTrue(self.card_kh == my_card_kc)
+        self.assertTrue(self.card_ad == my_card_as)
 
 
 if __name__ == '__main__':
