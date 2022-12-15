@@ -1,15 +1,9 @@
-from src.Card.Card import Card
 from src.Card.Rank import Rank
+from src.Hand.Hand import Hand
 
-
-class BlackjackHand:
-    def __init__(self):
-        self._hand = []
-
-    def draw(self, c):
-        self._hand.append(c)
-
-    def cardScore(self, c):
+class Hand(Hand):
+    @staticmethod
+    def cardScore(c):
         rank = c.get_rank()
         if rank == 14:
             return 1
@@ -20,10 +14,10 @@ class BlackjackHand:
 
     def score(self):
         score = [0]
-        for c in self._hand:
+        for card in self:
             for i in range(len(score)):
-                score[i] += self.cardScore(c)
-            if c.get_rank() == 14:
+                score[i] += Hand.cardScore(card)
+            if card.get_rank() == 14:
                 duplicate = score.copy()
                 for i in range(len(duplicate)):
                     duplicate[i] += 10
