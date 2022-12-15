@@ -1,7 +1,7 @@
 import unittest
 from src.Card.Card import Card
 from src.Poker.TexasHoldem.Hand import Hand
-from src.Poker.TexasHoldem.Rank import Rank
+from src.Poker.Rank import Rank
 
 
 class testHand(unittest.TestCase):

@@ -1,7 +1,7 @@
 from src.Card.Card import Card
 from src.Card.Rank import Rank
 from src.Card.Suit import Suit
-from src.Poker.TexasHoldem.Rank import Rank
+from src.Poker.Rank import Rank
 
 
 class Hand:
