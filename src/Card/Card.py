@@ -20,7 +20,7 @@ class Card:
 
     def constructor_with_string(self, card_str: str) -> None:
         length = len(card_str)
-        if length > 3:
+        if length > 3:  # normally 2 chars, but 3 for 10's
             raise ValueError("Bad argument in Card constructor")
         suit_str = card_str.upper()[-1]  # in case anyone uses lower case
         rank_str = card_str[:length - 1]

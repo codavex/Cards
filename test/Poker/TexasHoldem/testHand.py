@@ -3,9 +3,10 @@ from src.Card.Card import Card
 from src.Poker.TexasHoldem.Hand import Hand
 from src.Poker.TexasHoldem.Rank import Rank
 
+
 class testHand(unittest.TestCase):
 
-    def test_enpty_hand(self):
+    def test_empty_hand(self):
         hole = Hand()
 
         self.assertEqual(hole.size(), 0)

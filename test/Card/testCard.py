@@ -13,7 +13,6 @@ class testCard(unittest.TestCase):
         self.card_kh = Card(Rank(13), Suit.H)
         self.card_ad = Card(Rank(14), Suit.D)
 
-
     def test_card_repr(self):
         self.assertEqual(repr(self.card_2s), "2S")
         self.assertEqual(repr(self.card_js), "JS")
