@@ -1,10 +1,11 @@
 from src.Card.Rank import Rank
 from src.Hand.Hand import Hand
 
+
 class Hand(Hand):
     @staticmethod
-    def cardScore(c):
-        rank = c.get_rank()
+    def card_score(card):
+        rank = card.get_rank()
         if rank == 14:
             return 1
         elif rank in [11, 12, 13]:
@@ -16,7 +17,7 @@ class Hand(Hand):
         score = [0]
         for card in self:
             for i in range(len(score)):
-                score[i] += Hand.cardScore(card)
+                score[i] += Hand.card_score(card)
             if card.get_rank() == 14:
                 duplicate = score.copy()
                 for i in range(len(duplicate)):

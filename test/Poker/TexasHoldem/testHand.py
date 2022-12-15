@@ -122,5 +122,6 @@ class testHand(unittest.TestCase):
 
         self.assertEqual(hole.rank(community), Rank.HIGH_CARD)
 
+
 if __name__ == '__main__':
     unittest.main()
