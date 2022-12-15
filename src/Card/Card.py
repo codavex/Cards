@@ -22,11 +22,12 @@ class Card:
         length = len(card_str)
         if length > 3:
             raise ValueError("Bad argument in Card constructor")
-        suit_str = card_str.upper()[-1] # in case anyone uses lower case
+        suit_str = card_str.upper()[-1]  # in case anyone uses lower case
         rank_str = card_str[:length - 1]
         for suit in Suit:
             if suit.name == suit_str:
-                self.constructor_with_rank_and_suit(Rank(Rank.key_from_value(rank_str)), suit)
+                rank = Rank(Rank.key_from_value(rank_str))
+                self.constructor_with_rank_and_suit(rank, suit)
                 return
         raise ValueError("Bad argument in Card constructor")
 
