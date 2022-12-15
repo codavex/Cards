@@ -5,6 +5,7 @@ from src.Poker.Rank import Rank
 
 from src.Hand.Hand import Hand
 
+
 class Hand(Hand):
     def rank(self, community):
         flush_count = {}

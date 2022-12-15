@@ -13,6 +13,7 @@ class Deck(list):
                 for value in range(2, 15):
                     c = Card(Rank(value), suit)
                     self.append(c)
+
     def size(self):
         return len(self)
 
