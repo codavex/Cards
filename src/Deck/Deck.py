@@ -5,26 +5,19 @@ from src.Card.Rank import Rank
 from src.Card.Suit import Suit
 
 
-class Deck:
+class Deck(list):
     def __init__(self, num_decks: int = 1) -> None:
-        self._deck = []
+        super().__init__()
         for i in range(num_decks):
             for suit in Suit:
                 for value in range(2, 15):
                     c = Card(Rank(value), suit)
-                    self._deck.append(c)
-
-    def __str__(self):
-        return str(self._deck)
-
-    def __repr__(self):
-        return repr(self._deck)
-
+                    self.append(c)
     def size(self):
-        return len(self._deck)
+        return len(self)
 
     def shuffle(self):
-        random.shuffle(self._deck)
+        random.shuffle(self)
 
     def draw(self):
-        return self._deck.pop(0)
+        return self.pop(0)
