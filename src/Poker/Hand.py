@@ -9,7 +9,16 @@ class Hand(src.Hand.Hand.Hand):
 
         for suit in flush_count:
             if flush_count[suit] >= 5:
-                return self
+                flush = Hand()
+                for card in self:
+                    if card.get_suit() == suit:
+                        flush.append(card)
+                flush.sort(reverse=True)
+                undef, value_count, undef, undef, undef = flush._analyse()
+                straight = flush._is_straight(value_count)
+                if straight:
+                    return straight
+                return flush[:5]  # in case of more than 5 of the same suit
 
         return None
 
@@ -20,7 +29,13 @@ class Hand(src.Hand.Hand.Hand):
                     if rank + 2 in value_count:
                         if rank + 3 in value_count:
                             if rank + 4 in value_count:
-                                return self
+                                straight = Hand()
+                                self.sort()
+                                for card in self:
+                                    if card.get_rank().get_rank() == rank:
+                                        straight.append(card)
+                                        rank += 1
+                                return straight
 
         return None
 
@@ -59,7 +74,8 @@ class Hand(src.Hand.Hand.Hand):
         straight = self._is_straight(value_count)
 
         if flush and straight:
-            if flush == straight:
+            undef, new_value_count, undef, undef, undef = flush._analyse()
+            if flush._is_straight(new_value_count):
                 return Rank.STRAIGHT_FLUSH
 
         if four_oak >= 1:
