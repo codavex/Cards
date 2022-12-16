@@ -38,22 +38,22 @@ class Card:
         return "%s of %s" % (str(self._rank), self._suit.value)
 
     def __eq__(self, other):
-        return self._rank == other._rank
+        return self._rank == other.get_rank()
 
     def __ne__(self, other):
-        return self._rank != other._rank
+        return self._rank != other.get_rank()
 
     def __lt__(self, other):
-        return self._rank < other._rank
+        return self._rank < other.get_rank()
 
     def __le__(self, other):
-        return self._rank <= other._rank
+        return self._rank <= other.get_rank()
 
     def __gt__(self, other):
-        return self._rank > other._rank
+        return self._rank > other.get_rank()
 
     def __ge__(self, other):
-        return self._rank >= other._rank
+        return self._rank >= other.get_rank()
 
     def get_rank(self):
         return self._rank
