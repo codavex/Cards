@@ -4,14 +4,31 @@ from src.Poker.Rank import Rank
 
 
 class Hand(src.Hand.Hand.Hand):
-    def rank(self, board):
+
+    @staticmethod
+    def _is_flush(flush_count):
+
+        for suit in flush_count:
+            if flush_count[suit] >= 5:
+                return True
+
+        return False
+
+    @staticmethod
+    def _is_straight(value_count):
+        for rank in range(2, 11):
+            if rank in value_count:
+                if rank + 1 in value_count:
+                    if rank + 2 in value_count:
+                        if rank + 3 in value_count:
+                            if rank + 4 in value_count:
+                                return True
+
+        return False
+
+    def _analyse(self, board):
         flush_count = {}
         value_count = {}
-
-        flush = False
-        straight = False
-        three_oak = 0
-        two_oak = 0
 
         for card in self + board:
             rank = card.get_rank().get_rank()
@@ -24,17 +41,15 @@ class Hand(src.Hand.Hand.Hand):
             flush_count[suit] += 1
             value_count[rank] += 1
 
-        for suit in flush_count:
-            if flush_count[suit] >= 5:
-                flush = True
+        return flush_count, value_count
 
-        for rank in range(2, 11):
-            if rank in value_count:
-                if rank + 1 in value_count:
-                    if rank + 2 in value_count:
-                        if rank + 3 in value_count:
-                            if rank + 4 in value_count:
-                                straight = True
+    def rank(self, board):
+        flush_count, value_count = self._analyse(board)
+
+        flush = Hand._is_flush(flush_count)
+        straight = Hand._is_straight(value_count)
+        three_oak = 0
+        two_oak = 0
 
         if flush and straight:
             return Rank.STRAIGHT_FLUSH
