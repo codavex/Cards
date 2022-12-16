@@ -1,12 +1,11 @@
+import src.Hand.Hand
 from src.Card.Card import Card
 from src.Card.Rank import Rank
 from src.Card.Suit import Suit
 from src.Poker.Rank import Rank
 
-from src.Hand.Hand import Hand
 
-
-class Hand(Hand):
+class Hand(src.Hand.Hand.Hand):
     def rank(self, community):
         flush_count = {}
         value_count = {}

@@ -1,8 +1,7 @@
-from src.Card.Rank import Rank
-from src.Hand.Hand import Hand
+import src.Hand.Hand
 
 
-class Hand(Hand):
+class Hand(src.Hand.Hand.Hand):
     @staticmethod
     def card_score(card):
         rank = card.get_rank()
