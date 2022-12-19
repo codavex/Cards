@@ -30,33 +30,29 @@ class Hand(src.Hand.Hand.Hand):
         return flush
 
     def _is_straight(self):
-        value_count = {}
+        value_bitmap = 0
 
         for card in self:
             rank = card.get_rank().get_rank()
+            value_bitmap |= (1 << rank)
+            if rank == 14:  # aces can be low
+                value_bitmap |= 1
 
-            if rank not in value_count:
-                value_count[rank] = 0
-            value_count[rank] += 1
-
-        for rank in range(2, 11):
-            if rank in value_count:
-                if rank + 1 in value_count:
-                    if rank + 2 in value_count:
-                        if rank + 3 in value_count:
-                            if rank + 4 in value_count:
-                                return True, rank
+        for rank in range(10, 0, -1):
+            test = 31 << rank
+            if test & value_bitmap == test:
+                return True, rank + 4
 
         return False, None
 
     def _extract_straight(self, high_card):
         straight = Hand()
-        next_card = high_card - 5
+        next_card = high_card - 4
         for card in self:
-            if card.get_rank().get_rank() == next_card:
+            if (card.get_rank().get_rank() == next_card) or (next_card == 1 and card.get_rank().get_rank() == 14):
                 straight.append(card)
                 next_card += 1
-        straight.sort(reverse=True)
+        # straight.sort(reverse=True)
         return straight
 
     def _analyse(self):
@@ -83,8 +79,6 @@ class Hand(src.Hand.Hand.Hand):
         return four_oak, three_oak, two_oak
 
     def rank(self):
-        four_oak, three_oak, two_oak = self._analyse()
-
         is_flush, suit = self._is_flush()
 
         if is_flush:
@@ -92,6 +86,8 @@ class Hand(src.Hand.Hand.Hand):
             is_straight, high_card = flush._is_straight()
             if is_straight:
                 return Rank.STRAIGHT_FLUSH, flush._extract_straight(high_card)
+
+        four_oak, three_oak, two_oak = self._analyse()
 
         if four_oak >= 1:
             return Rank.FOUR_OAK, self
