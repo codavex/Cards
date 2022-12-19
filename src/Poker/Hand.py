@@ -34,11 +34,11 @@ class Hand(src.Hand.Hand.Hand):
 
         for card in self:
             rank = card.get_rank().get_rank()
-            value_bitmap |= (1 << rank)
+            value_bitmap |= (1 << rank - 1)
             if rank == 14:  # aces can be low
                 value_bitmap |= 1
 
-        for rank in range(10, 0, -1):
+        for rank in range(10, -1, -1):
             test = 31 << rank
             if test & value_bitmap == test:
                 return True, rank + 4
