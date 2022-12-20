@@ -71,6 +71,10 @@ class Hand(src.Hand.Hand.Hand):
             elif value_count[rank] == 2:
                 two_oak.append(rank)
 
+        four_oak.sort(reverse=True)
+        three_oak.sort(reverse=True)
+        two_oak.sort(reverse=True)
+
         return four_oak, three_oak, two_oak
 
     def rank(self):
@@ -91,13 +95,11 @@ class Hand(src.Hand.Hand.Hand):
             return Rank.FOUR_OAK, return_hand + leftovers[:1]
 
         if len(three_oak) == 2:
-            three_oak.sort(reverse=True)
             high_three_oak = list(filter(lambda card: card.get_rank().get_rank() == three_oak[0], self))
             low_three_oak = list(filter(lambda card: card.get_rank().get_rank() == three_oak[1], self))
             return Rank.FULL_HOUSE, high_three_oak + low_three_oak[:2]
 
         if len(three_oak) == 1 and len(two_oak) >= 1:
-            two_oak.sort(reverse=True)
             high_three_oak = list(filter(lambda card: card.get_rank().get_rank() == three_oak[0], self))
             high_two_oak = list(filter(lambda card: card.get_rank().get_rank() == two_oak[0], self))
             return Rank.FULL_HOUSE, high_three_oak + high_two_oak
@@ -118,7 +120,6 @@ class Hand(src.Hand.Hand.Hand):
             return Rank.THREE_OAK, return_hand + leftovers[:2]
 
         if len(two_oak) >= 2:
-            two_oak.sort(reverse=True)
             high_two_oak = list(filter(lambda card: card.get_rank().get_rank() == two_oak[0], self))
             low_two_oak = list(filter(lambda card: card.get_rank().get_rank() == two_oak[1], self))
             leftovers = list(filter(lambda card: card.get_rank().get_rank() not in two_oak, self))
