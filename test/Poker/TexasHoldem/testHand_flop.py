@@ -18,7 +18,7 @@ class testHand(unittest.TestCase):
         community.append(Card("10S"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.STRAIGHT_FLUSH)
+        self.assertEqual(Rank.STRAIGHT_FLUSH, rank)
 
     def test_hand_four_oak(self):
         hole = Hand()
@@ -32,7 +32,7 @@ class testHand(unittest.TestCase):
         community.append(Card("2D"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.FOUR_OAK)
+        self.assertEqual(Rank.FOUR_OAK, rank)
 
     def test_hand_full_house(self):
         hole = Hand()
@@ -46,7 +46,7 @@ class testHand(unittest.TestCase):
         community.append(Card("KS"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.FULL_HOUSE)
+        self.assertEqual(Rank.FULL_HOUSE, rank)
 
     def test_hand_flush(self):
         hole = Hand()
@@ -60,7 +60,7 @@ class testHand(unittest.TestCase):
         community.append(Card("2S"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.FLUSH)
+        self.assertEqual(Rank.FLUSH, rank)
 
     def test_hand_straight(self):
         hole = Hand()
@@ -74,7 +74,7 @@ class testHand(unittest.TestCase):
         community.append(Card("5D"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.STRAIGHT)
+        self.assertEqual(Rank.STRAIGHT, rank)
 
     def test_hand_three_oak(self):
         hole = Hand()
@@ -88,7 +88,7 @@ class testHand(unittest.TestCase):
         community.append(Card("2D"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.THREE_OAK)
+        self.assertEqual(Rank.THREE_OAK, rank)
 
     def test_hand_two_pair(self):
         hole = Hand()
@@ -102,7 +102,7 @@ class testHand(unittest.TestCase):
         community.append(Card("2D"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.TWO_TWO_OAK)
+        self.assertEqual(Rank.TWO_TWO_OAK, rank)
 
     def test_hand_two_oak(self):
         hole = Hand()
@@ -116,7 +116,7 @@ class testHand(unittest.TestCase):
         community.append(Card("2D"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.TWO_OAK)
+        self.assertEqual(Rank.TWO_OAK, rank)
 
     def test_hand_high_card(self):
         hole = Hand()
@@ -130,7 +130,7 @@ class testHand(unittest.TestCase):
         community.append(Card("2D"))
 
         rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(rank, Rank.HIGH_CARD)
+        self.assertEqual(Rank.HIGH_CARD, rank)
 
 
 if __name__ == '__main__':

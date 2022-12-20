@@ -13,18 +13,18 @@ class testRank(unittest.TestCase):
         self.rank_a = Rank(14)
 
     def test_rank_repr(self):
-        self.assertEqual(repr(self.rank_2), "2")
-        self.assertEqual(repr(self.rank_j), "J")
-        self.assertEqual(repr(self.rank_q), "Q")
-        self.assertEqual(repr(self.rank_k), "K")
-        self.assertEqual(repr(self.rank_a), "A")
+        self.assertEqual("2", repr(self.rank_2))
+        self.assertEqual("J", repr(self.rank_j))
+        self.assertEqual("Q", repr(self.rank_q))
+        self.assertEqual("K", repr(self.rank_k))
+        self.assertEqual("A", repr(self.rank_a))
 
     def test_rank_str(self):
-        self.assertEqual(str(self.rank_2), "2")
-        self.assertEqual(str(self.rank_j), "Jack")
-        self.assertEqual(str(self.rank_q), "Queen")
-        self.assertEqual(str(self.rank_k), "King")
-        self.assertEqual(str(self.rank_a), "Ace")
+        self.assertEqual("2", str(self.rank_2))
+        self.assertEqual("Jack", str(self.rank_j))
+        self.assertEqual("Queen", str(self.rank_q))
+        self.assertEqual("King", str(self.rank_k))
+        self.assertEqual("Ace", str(self.rank_a))
 
     def test_rank_gt(self):
         self.assertTrue(self.rank_a > self.rank_k)

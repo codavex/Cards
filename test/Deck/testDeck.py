@@ -7,19 +7,19 @@ class testDeck(unittest.TestCase):
 
     def test_deck_size_1_a(self):
         deck = Deck()
-        self.assertEqual(deck.size(), 52)
+        self.assertEqual(52, deck.size())
 
     def test_deck_size_1_b(self):
         deck = Deck(1)
-        self.assertEqual(deck.size(), 52)
+        self.assertEqual(52, deck.size())
 
     def test_deck_size_2(self):
         deck = Deck(2)
-        self.assertEqual(deck.size(), 52*2)
+        self.assertEqual(52*2, deck.size())
 
     def test_deck_size_3(self):
         deck = Deck(3)
-        self.assertEqual(deck.size(), 52*3)
+        self.assertEqual(52*3, deck.size())
 
     def test_deck_str(self):
         deck = Deck()
@@ -29,7 +29,7 @@ class testDeck(unittest.TestCase):
         diamonds = "2D, 3D, 4D, 5D, 6D, 7D, 8D, 9D, 10D, JD, QD, KD, AD"
         expected = "[" + spades + clubs + hearts + diamonds + "]"
 
-        self.assertEqual(str(deck), expected)
+        self.assertEqual(expected, str(deck))
 
 
 if __name__ == '__main__':

@@ -15,18 +15,18 @@ class testCard(unittest.TestCase):
         self.card_ad = Card(Rank(14), Suit.D)
 
     def test_card_repr(self):
-        self.assertEqual(repr(self.card_2s), "2S")
-        self.assertEqual(repr(self.card_js), "JS")
-        self.assertEqual(repr(self.card_qc), "QC")
-        self.assertEqual(repr(self.card_kh), "KH")
-        self.assertEqual(repr(self.card_ad), "AD")
+        self.assertEqual("2S", repr(self.card_2s))
+        self.assertEqual("JS", repr(self.card_js))
+        self.assertEqual("QC", repr(self.card_qc))
+        self.assertEqual("KH", repr(self.card_kh))
+        self.assertEqual("AD", repr(self.card_ad))
 
     def test_card_str(self):
-        self.assertEqual(str(self.card_2s), "2 of Spades")
-        self.assertEqual(str(self.card_js), "Jack of Spades")
-        self.assertEqual(str(self.card_qc), "Queen of Clubs")
-        self.assertEqual(str(self.card_kh), "King of Hearts")
-        self.assertEqual(str(self.card_ad), "Ace of Diamonds")
+        self.assertEqual("2 of Spades", str(self.card_2s))
+        self.assertEqual("Jack of Spades", str(self.card_js))
+        self.assertEqual("Queen of Clubs", str(self.card_qc))
+        self.assertEqual("King of Hearts", str(self.card_kh))
+        self.assertEqual("Ace of Diamonds", str(self.card_ad))
 
     def test_card_gt(self):
         self.assertTrue(self.card_ad > self.card_kh)
@@ -95,12 +95,12 @@ class testCard(unittest.TestCase):
         card_ad = Card(card_ad_str)
         card_td = Card(card_td_str)
 
-        self.assertEqual(repr(card_2s), card_2s_str)
-        self.assertEqual(repr(card_js), card_js_str)
-        self.assertEqual(repr(card_qc), card_qc_str)
-        self.assertEqual(repr(card_kh), card_kh_str)
-        self.assertEqual(repr(card_ad), card_ad_str)
-        self.assertEqual(repr(card_td), card_td_str)
+        self.assertEqual(card_2s_str, repr(card_2s))
+        self.assertEqual(card_js_str, repr(card_js))
+        self.assertEqual(card_qc_str, repr(card_qc))
+        self.assertEqual(card_kh_str, repr(card_kh))
+        self.assertEqual(card_ad_str, repr(card_ad))
+        self.assertEqual(card_td_str, repr(card_td))
 
     # noinspection PyUnusedLocal
     def test_bad_card_string_rank_1(self):

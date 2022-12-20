@@ -28,7 +28,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("2D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.FOUR_OAK)
+        self.assertEqual(Rank.FOUR_OAK, rank)
 
     def test_hand_full_house(self):
         hand = Hand()
@@ -40,7 +40,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("KS"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.FULL_HOUSE)
+        self.assertEqual(Rank.FULL_HOUSE, rank)
 
     def test_hand_flush(self):
         hand = Hand()
@@ -52,7 +52,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("2S"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.FLUSH)
+        self.assertEqual(Rank.FLUSH, rank)
 
     def test_hand_straight(self):
         hand = Hand()
@@ -64,7 +64,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("5D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.STRAIGHT)
+        self.assertEqual(Rank.STRAIGHT, rank)
 
     def test_hand_straight_ace_low(self):
         hand = Hand()
@@ -76,7 +76,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("3D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.STRAIGHT)
+        self.assertEqual(Rank.STRAIGHT, rank)
 
     def test_hand_straight_ace_high(self):
         hand = Hand()
@@ -88,7 +88,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("QD"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.STRAIGHT)
+        self.assertEqual(Rank.STRAIGHT, rank)
 
     def test_hand_three_oak(self):
         hand = Hand()
@@ -100,7 +100,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("2D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.THREE_OAK)
+        self.assertEqual(Rank.THREE_OAK, rank)
 
     def test_hand_two_pair(self):
         hand = Hand()
@@ -112,7 +112,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("2D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.TWO_TWO_OAK)
+        self.assertEqual(Rank.TWO_TWO_OAK, rank)
 
     def test_hand_two_oak(self):
         hand = Hand()
@@ -124,7 +124,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("2D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.TWO_OAK)
+        self.assertEqual(Rank.TWO_OAK, rank)
 
     def test_hand_high_card(self):
         hand = Hand()
@@ -136,7 +136,7 @@ class testHand(unittest.TestCase):
         hand.append(Card("2D"))
 
         rank, best_hand = hand.rank()
-        self.assertEqual(rank, Rank.HIGH_CARD)
+        self.assertEqual(Rank.HIGH_CARD, rank)
 
 
 if __name__ == '__main__':

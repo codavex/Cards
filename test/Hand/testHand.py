@@ -9,24 +9,24 @@ class testHand(unittest.TestCase):
     def test_empty_hand(self):
         hand = Hand()
 
-        self.assertEqual(hand.size(), 0)
-        self.assertEqual(hand.__str__(), "[]")
-        self.assertEqual(hand.__repr__(), "[]")
+        self.assertEqual(0, hand.size())
+        self.assertEqual("[]", hand.__str__())
+        self.assertEqual("[]", hand.__repr__())
 
     def test_pocket_append_cards(self):
         hand = Hand()
 
         hand.append(Card("AS"))
 
-        self.assertEqual(hand.size(), 1)
-        self.assertEqual(hand.__str__(), "[AS]")
-        self.assertEqual(hand.__repr__(), "[AS]")
+        self.assertEqual(1, hand.size())
+        self.assertEqual("[AS]", hand.__str__())
+        self.assertEqual("[AS]", hand.__repr__())
 
         hand.append(Card("AC"))
 
-        self.assertEqual(hand.size(), 2)
-        self.assertEqual(hand.__str__(), "[AS, AC]")
-        self.assertEqual(hand.__repr__(), "[AS, AC]")
+        self.assertEqual(2, hand.size())
+        self.assertEqual("[AS, AC]", hand.__str__())
+        self.assertEqual("[AS, AC]", hand.__repr__())
 
 
 if __name__ == '__main__':
