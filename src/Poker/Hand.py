@@ -48,7 +48,8 @@ class Hand(src.Hand.Hand.Hand):
         straight = Hand()
         next_card = high_card - 4
         for card in self:
-            if (card.get_value() == next_card) or (next_card == 1 and card.get_value() == 14):
+            if (card.get_value() == next_card) or \
+                    (next_card == 1 and card.get_value() == 14):
                 straight.insert(0, card)
                 next_card += 1
         return straight
