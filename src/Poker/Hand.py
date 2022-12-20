@@ -6,6 +6,18 @@ from src.Poker.Rank import Rank
 
 class Hand(src.Hand.Hand.Hand):
 
+    _straight_bitmap = {14: 0b11111000000000,
+                        13: 0b01111100000000,
+                        12: 0b00111110000000,
+                        11: 0b00011111000000,
+                        10: 0b00001111100000,
+                        9:  0b00000111110000,
+                        8:  0b00000011111000,
+                        7:  0b00000001111100,
+                        6:  0b00000000111110,
+                        5:  0b00000000011111,
+                        }
+
     def _is_flush(self):
         flush_count = {Suit.S: 0, Suit.C: 0, Suit.H: 0, Suit.D: 0}
 
@@ -31,13 +43,10 @@ class Hand(src.Hand.Hand.Hand):
             if rank == 14:  # aces can be low
                 value_bitmap |= 1
 
-        test = 0b11111000000000
-        rank = 14
-        while rank > 4:
-            if test & value_bitmap == test:
+        for rank in self._straight_bitmap:
+            test_value = self._straight_bitmap[rank]
+            if test_value & value_bitmap == test_value:
                 return True, rank
-            rank -= 1
-            test = test >> 1
         return False, None
 
     def _extract_straight(self, high_card):
