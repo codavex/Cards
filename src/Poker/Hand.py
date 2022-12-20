@@ -20,11 +20,7 @@ class Hand(src.Hand.Hand.Hand):
         return False, None
 
     def _extract_suit(self, suit):
-        flush = Hand()
-        for card in self:
-            if card.get_suit() == suit:
-                flush.append(card)
-        flush.sort(reverse=True)
+        flush = Hand(filter(lambda card: card.get_suit() == suit, self))
         return flush
 
     def _is_straight(self):
