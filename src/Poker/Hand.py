@@ -53,6 +53,12 @@ class Hand(src.Hand.Hand.Hand):
                 next_card += 1
         return straight
 
+    def _extract_cards_with_value(self, rank):
+        return list(filter(lambda card: card.get_rank().get_rank() == rank, self))
+
+    def _extract_cards_without_value(self, ranks):
+        return list(filter(lambda card: card.get_rank().get_rank() not in ranks, self))
+
     def _analyse(self):
         value_count = {}
         four_oak = []
@@ -93,18 +99,18 @@ class Hand(src.Hand.Hand.Hand):
         four_oak, three_oak, two_oak = self._analyse()
 
         if len(four_oak) == 1:
-            return_hand = list(filter(lambda card: card.get_rank().get_rank() == four_oak[0], self))
-            leftovers = list(filter(lambda card: card.get_rank().get_rank() != four_oak[0], self))
+            return_hand = self._extract_cards_with_value(four_oak[0])
+            leftovers = self._extract_cards_without_value(four_oak)
             return Rank.FOUR_OAK, return_hand + leftovers[:1]
 
         if len(three_oak) == 2:
-            high_three_oak = list(filter(lambda card: card.get_rank().get_rank() == three_oak[0], self))
-            low_three_oak = list(filter(lambda card: card.get_rank().get_rank() == three_oak[1], self))
+            high_three_oak = self._extract_cards_with_value(three_oak[0])
+            low_three_oak = self._extract_cards_with_value(three_oak[1])
             return Rank.FULL_HOUSE, high_three_oak + low_three_oak[:2]
 
         if len(three_oak) == 1 and len(two_oak) >= 1:
-            high_three_oak = list(filter(lambda card: card.get_rank().get_rank() == three_oak[0], self))
-            high_two_oak = list(filter(lambda card: card.get_rank().get_rank() == two_oak[0], self))
+            high_three_oak = self._extract_cards_with_value(three_oak[0])
+            high_two_oak = self._extract_cards_with_value(two_oak[0])
             return Rank.FULL_HOUSE, high_three_oak + high_two_oak
 
         if is_flush:
@@ -118,19 +124,19 @@ class Hand(src.Hand.Hand.Hand):
             return Rank.STRAIGHT, straight
 
         if len(three_oak) == 1:
-            return_hand = list(filter(lambda card: card.get_rank().get_rank() == three_oak[0], self))
-            leftovers = list(filter(lambda card: card.get_rank().get_rank() != three_oak[0], self))
+            return_hand = self._extract_cards_with_value(three_oak[0])
+            leftovers = self._extract_cards_without_value(three_oak)
             return Rank.THREE_OAK, return_hand + leftovers[:2]
 
         if len(two_oak) >= 2:
-            high_two_oak = list(filter(lambda card: card.get_rank().get_rank() == two_oak[0], self))
-            low_two_oak = list(filter(lambda card: card.get_rank().get_rank() == two_oak[1], self))
-            leftovers = list(filter(lambda card: card.get_rank().get_rank() not in two_oak, self))
+            high_two_oak = self._extract_cards_with_value(two_oak[0])
+            low_two_oak = self._extract_cards_with_value(two_oak[1])
+            leftovers = self._extract_cards_without_value(two_oak)
             return Rank.TWO_TWO_OAK, high_two_oak + low_two_oak + leftovers[:1]
 
         if len(two_oak) == 1:
-            return_hand = list(filter(lambda card: card.get_rank().get_rank() == two_oak[0], self))
-            leftovers = list(filter(lambda card: card.get_rank().get_rank() != two_oak[0], self))
+            return_hand = self._extract_cards_with_value(two_oak[0])
+            leftovers = self._extract_cards_without_value(two_oak)
             return Rank.TWO_OAK, return_hand + leftovers[:3]
 
         return Rank.HIGH_CARD, self[:5]
