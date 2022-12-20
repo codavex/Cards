@@ -74,7 +74,6 @@ class testHand(unittest.TestCase):
         self.assertEqual(Rank.FLUSH, rank)
         self.assertEqual("[AS, 7S, 5S, 3S, 2S]", best_hand.__str__())
 
-
     def test_hand_straight(self):
         hole = Hand()
         community = Hand()
@@ -91,7 +90,6 @@ class testHand(unittest.TestCase):
         rank, best_hand = hole.rank_with_board(community)
         self.assertEqual(Rank.STRAIGHT, rank)
         self.assertEqual("[9S, 8C, 7H, 6D, 5D]", best_hand.__str__())
-
 
     def test_hand_three_oak(self):
         hole = Hand()
@@ -178,8 +176,7 @@ class testHand(unittest.TestCase):
         self.assertEqual(Rank.TWO_OAK, rank)
         self.assertEqual("[AS, AC, JD, 8D, 4D]", best_hand.__str__())
 
-
-def test_hand_high_card(self):
+    def test_hand_high_card(self):
         hole = Hand()
         community = Hand()
 
@@ -195,7 +192,6 @@ def test_hand_high_card(self):
         rank, best_hand = hole.rank_with_board(community)
         self.assertEqual(Rank.HIGH_CARD, rank)
         self.assertEqual("[AS, KC, 9S, 8H, 5D]", best_hand.__str__())
-
 
 
 if __name__ == '__main__':
