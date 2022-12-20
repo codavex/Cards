@@ -76,7 +76,7 @@ class Hand(src.Hand.Hand.Hand):
         three_oak.sort(reverse=True)
         two_oak.sort(reverse=True)
 
-        return four_oak, three_oak, two_oak
+        return four_oak, three_oak, two_oak[:2]
 
     def rank(self):
         self.sort(reverse=True)

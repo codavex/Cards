@@ -127,6 +127,23 @@ class testHand(unittest.TestCase):
         self.assertEqual(Rank.TWO_TWO_OAK, rank)
         self.assertEqual("[AS, AC, KH, KD, 8S]", best_hand.__str__())
 
+    def test_hand_three_pair(self):
+        hole = Hand()
+        community = Hand()
+
+        hole.append(Card("AS"))
+        hole.append(Card("AC"))
+
+        community.append(Card("KH"))
+        community.append(Card("KD"))
+        community.append(Card("6D"))
+        community.append(Card("6C"))
+        community.append(Card("4S"))
+
+        rank, best_hand = hole.rank_with_board(community)
+        self.assertEqual(Rank.TWO_TWO_OAK, rank)
+        self.assertEqual("[AS, AC, KH, KD, 6D]", best_hand.__str__())
+
     def test_hand_two_oak(self):
         hole = Hand()
         community = Hand()
