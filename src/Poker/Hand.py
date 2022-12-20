@@ -10,8 +10,7 @@ class Hand(src.Hand.Hand.Hand):
         flush_count = {Suit.S: 0, Suit.C: 0, Suit.H: 0, Suit.D: 0}
 
         for card in self:
-            suit = card.get_suit()
-            flush_count[suit] += 1
+            flush_count[card.get_suit()] += 1
 
         for suit in flush_count:
             if flush_count[suit] >= 5:
@@ -32,11 +31,13 @@ class Hand(src.Hand.Hand.Hand):
             if rank == 14:  # aces can be low
                 value_bitmap |= 1
 
-        for rank in range(10, -1, -1):
-            test = 31 << rank
+        test = 0b11111000000000
+        rank = 14
+        while rank > 4:
             if test & value_bitmap == test:
-                return True, rank + 5
-
+                return True, rank
+            rank -= 1
+            test = test >> 1
         return False, None
 
     def _extract_straight(self, high_card):
