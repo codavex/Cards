@@ -4,6 +4,7 @@ from src.Card.Suit import Suit
 from src.Blackjack.Hand import Hand
 
 
+# noinspection PyPep8Naming
 class testHand(unittest.TestCase):
 
     def test_hand_score(self):

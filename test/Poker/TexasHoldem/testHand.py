@@ -4,6 +4,7 @@ from src.Poker.TexasHoldem.Hand import Hand
 from src.Poker.Rank import Rank
 
 
+# noinspection PyPep8Naming
 class testHand(unittest.TestCase):
     def test_hand_straight_flush(self):
         hole = Hand()

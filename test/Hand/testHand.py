@@ -3,6 +3,7 @@ from src.Card.Card import Card
 from src.Hand.Hand import Hand
 
 
+# noinspection PyPep8Naming
 class testHand(unittest.TestCase):
 
     def test_empty_hand(self):

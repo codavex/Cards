@@ -4,6 +4,7 @@ from src.Card.Rank import Rank
 from src.Card.Suit import Suit
 
 
+# noinspection PyPep8Naming
 class testCard(unittest.TestCase):
 
     def setUp(self):
@@ -101,18 +102,22 @@ class testCard(unittest.TestCase):
         self.assertEqual(repr(card_ad), card_ad_str)
         self.assertEqual(repr(card_td), card_td_str)
 
+    # noinspection PyUnusedLocal
     def test_bad_card_string_rank_1(self):
         with self.assertRaises(ValueError) as context:
             card = Card("1S")
 
+    # noinspection PyUnusedLocal
     def test_bad_card_string_rank_15(self):
         with self.assertRaises(ValueError) as context:
             card = Card("15S")
 
+    # noinspection PyUnusedLocal
     def test_bad_card_string_suit(self):
         with self.assertRaises(ValueError) as context:
             card = Card("2T")
 
+    # noinspection PyUnusedLocal
     def test_bad_card_string_too_long(self):
         with self.assertRaises(ValueError) as context:
             card = Card("2 of Spades")

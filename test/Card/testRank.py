@@ -2,6 +2,7 @@ import unittest
 from src.Card.Rank import Rank
 
 
+# noinspection PyPep8Naming
 class testRank(unittest.TestCase):
 
     def setUp(self):
@@ -76,14 +77,17 @@ class testRank(unittest.TestCase):
         self.assertTrue(self.rank_k == my_rank_k)
         self.assertTrue(self.rank_a == my_rank_a)
 
+    # noinspection PyUnusedLocal
     def test_bad_rank_1(self):
         with self.assertRaises(ValueError) as context:
             rank = Rank(1)
 
+    # noinspection PyUnusedLocal
     def test_bad_rank_15(self):
         with self.assertRaises(ValueError) as context:
             rank = Rank(15)
 
+    # noinspection PyTypeChecker,PyUnusedLocal
     def test_bad_rank_str(self):
         with self.assertRaises(ValueError) as context:
             rank = Rank("2")

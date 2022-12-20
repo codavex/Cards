@@ -2,6 +2,7 @@ import unittest
 from src.Deck.Deck import Deck
 
 
+# noinspection PyPep8Naming
 class testDeck(unittest.TestCase):
 
     def test_deck_size_1_a(self):
