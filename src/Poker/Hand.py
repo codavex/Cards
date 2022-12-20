@@ -48,16 +48,16 @@ class Hand(src.Hand.Hand.Hand):
         straight = Hand()
         next_card = high_card - 4
         for card in self:
-            if (card.get_rank().get_rank() == next_card) or (next_card == 1 and card.get_rank().get_rank() == 14):
+            if (card.get_value() == next_card) or (next_card == 1 and card.get_value() == 14):
                 straight.insert(0, card)
                 next_card += 1
         return straight
 
     def _extract_cards_with_value(self, rank):
-        return list(filter(lambda card: card.get_rank().get_rank() == rank, self))
+        return list(filter(lambda card: card.get_value() == rank, self))
 
     def _extract_cards_without_value(self, ranks):
-        return list(filter(lambda card: card.get_rank().get_rank() not in ranks, self))
+        return list(filter(lambda card: card.get_value() not in ranks, self))
 
     def _analyse(self):
         value_count = {}
