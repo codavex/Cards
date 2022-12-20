@@ -42,13 +42,15 @@ class Hand(src.Hand.Hand.Hand):
 
     def _extract_straight(self, high_card):
         self.sort(reverse=False)
+        if high_card == 5:
+            self.insert(0, self.pop())
+
         straight = Hand()
         next_card = high_card - 4
         for card in self:
             if (card.get_rank().get_rank() == next_card) or (next_card == 1 and card.get_rank().get_rank() == 14):
-                straight.append(card)
+                straight.insert(0, card)
                 next_card += 1
-        straight.sort(reverse=True)
         return straight
 
     def _analyse(self):
