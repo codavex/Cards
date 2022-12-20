@@ -81,6 +81,36 @@ class testHand(unittest.TestCase):
         self.assertEqual(Rank.STRAIGHT, rank)
         self.assertEqual("[9S, 8C, 7H, 6D, 5D]", best_hand.__str__())
 
+    def test_hand_straight_ace_low(self):
+        hole = Hand()
+        community = Hand()
+
+        hole.append(Card("AS"))
+        hole.append(Card("5C"))
+
+        community.append(Card("4H"))
+        community.append(Card("2D"))
+        community.append(Card("3D"))
+
+        rank, best_hand = hole.rank_with_board(community)
+        self.assertEqual(Rank.STRAIGHT, rank)
+        self.assertEqual("[5C, 4H, 3D, 2D, AS]", best_hand.__str__())
+
+    def test_hand_straight_ace_high(self):
+        hole = Hand()
+        community = Hand()
+
+        hole.append(Card("AS"))
+        hole.append(Card("10C"))
+
+        community.append(Card("KH"))
+        community.append(Card("JD"))
+        community.append(Card("QD"))
+
+        rank, best_hand = hole.rank_with_board(community)
+        self.assertEqual(Rank.STRAIGHT, rank)
+        self.assertEqual("[AS, KH, QD, JD, 10C]", best_hand.__str__())
+
     def test_hand_three_oak(self):
         hole = Hand()
         community = Hand()
