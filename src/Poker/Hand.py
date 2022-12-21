@@ -21,7 +21,7 @@ class Hand(src.Hand.Hand.Hand):
         flush_count = {Suit.S: 0, Suit.C: 0, Suit.H: 0, Suit.D: 0}
 
         for card in self:
-            flush_count[card.get_suit()] += 1
+            flush_count[card.suit] += 1
 
         for suit in flush_count:
             if flush_count[suit] >= 5:
@@ -30,14 +30,14 @@ class Hand(src.Hand.Hand.Hand):
         return False, None
 
     def _extract_suit(self, suit):
-        flush = Hand(filter(lambda card: card.get_suit() == suit, self))
+        flush = Hand(filter(lambda card: card.suit == suit, self))
         return flush
 
     def _is_straight(self):
         value_bitmap = 0
 
         for card in self:
-            rank = card.get_value()
+            rank = card.value
             value_bitmap |= (1 << rank - 1)
             if rank == 14:  # aces can be low
                 value_bitmap |= 1
@@ -56,17 +56,17 @@ class Hand(src.Hand.Hand.Hand):
         straight = Hand()
         next_card = high_card - 4
         for card in self:
-            if (card.get_value() == next_card) or \
-                    (next_card == 1 and card.get_value() == 14):
+            if (card.value == next_card) or \
+                    (next_card == 1 and card.value == 14):
                 straight.insert(0, card)
                 next_card += 1
         return straight
 
     def _extract_cards_with_value(self, rank):
-        return list(filter(lambda card: card.get_value() == rank, self))
+        return list(filter(lambda card: card.value == rank, self))
 
     def _extract_cards_without_value(self, ranks):
-        return list(filter(lambda card: card.get_value() not in ranks, self))
+        return list(filter(lambda card: card.value not in ranks, self))
 
     def _analyse(self):
         value_count = {}
@@ -75,7 +75,7 @@ class Hand(src.Hand.Hand.Hand):
         two_oak = []
 
         for card in self:
-            rank = card.get_value()
+            rank = card.value
 
             if rank not in value_count:
                 value_count[rank] = 0
