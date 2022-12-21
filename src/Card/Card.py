@@ -34,32 +34,32 @@ class Card:
     def __repr__(self):
         return "%s%s" % (repr(self._rank), self._suit.name)
 
-    def __str__(self):
-        return "%s of %s" % (str(self._rank), self._suit.value)
-
     def __eq__(self, other):
-        return self._rank == other.get_rank()
+        return self._rank == other.rank
 
     def __ne__(self, other):
-        return self._rank != other.get_rank()
+        return self._rank != other.rank
 
     def __lt__(self, other):
-        return self._rank < other.get_rank()
+        return self._rank < other.rank
 
     def __le__(self, other):
-        return self._rank <= other.get_rank()
+        return self._rank <= other.rank
 
     def __gt__(self, other):
-        return self._rank > other.get_rank()
+        return self._rank > other.rank
 
     def __ge__(self, other):
-        return self._rank >= other.get_rank()
+        return self._rank >= other.rank
 
-    def get_rank(self):
+    @property
+    def rank(self):
         return self._rank
 
-    def get_value(self):
-        return self._rank.get_rank()
+    @property
+    def value(self):
+        return self._rank.rank
 
-    def get_suit(self):
+    @property
+    def suit(self):
         return self._suit

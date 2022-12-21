@@ -20,7 +20,8 @@ class Rank:
             return
         raise ValueError('Bad argument in Rank constructor')
 
-    def get_rank(self):
+    @property
+    def rank(self):
         return self._rank
 
     def __repr__(self):
@@ -30,19 +31,19 @@ class Rank:
         return Rank.str_mapping[self._rank]
 
     def __eq__(self, other):
-        return self._rank == other.get_rank()
+        return self._rank == other.rank
 
     def __ne__(self, other):
-        return self._rank != other.get_rank()
+        return self._rank != other.rank
 
     def __lt__(self, other):
-        return self._rank < other.get_rank()
+        return self._rank < other.rank
 
     def __le__(self, other):
-        return self._rank <= other.get_rank()
+        return self._rank <= other.rank
 
     def __gt__(self, other):
-        return self._rank > other.get_rank()
+        return self._rank > other.rank
 
     def __ge__(self, other):
-        return self._rank >= other.get_rank()
+        return self._rank >= other.rank
