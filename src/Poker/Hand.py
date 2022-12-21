@@ -37,7 +37,7 @@ class Hand(src.Hand.Hand.Hand):
         value_bitmap = 0
 
         for card in self:
-            rank = card.get_rank().get_rank()
+            rank = card.get_value()
             value_bitmap |= (1 << rank - 1)
             if rank == 14:  # aces can be low
                 value_bitmap |= 1
@@ -75,7 +75,7 @@ class Hand(src.Hand.Hand.Hand):
         two_oak = []
 
         for card in self:
-            rank = card.get_rank().get_rank()
+            rank = card.get_value()
 
             if rank not in value_count:
                 value_count[rank] = 0
