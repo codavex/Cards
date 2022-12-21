@@ -10,8 +10,8 @@ class testHand(unittest.TestCase):
         hand = Hand()
 
         self.assertEqual(0, hand.size())
-        self.assertEqual("[]", hand.__str__())
-        self.assertEqual("[]", hand.__repr__())
+        self.assertEqual("[]", str(hand))
+        self.assertEqual("[]", str(hand))
 
     def test_pocket_append_cards(self):
         hand = Hand()
@@ -19,14 +19,12 @@ class testHand(unittest.TestCase):
         hand.append(Card("AS"))
 
         self.assertEqual(1, hand.size())
-        self.assertEqual("[AS]", hand.__str__())
-        self.assertEqual("[AS]", hand.__repr__())
+        self.assertEqual("[AS]", str(hand))
 
         hand.append(Card("AC"))
 
         self.assertEqual(2, hand.size())
-        self.assertEqual("[AS, AC]", hand.__str__())
-        self.assertEqual("[AS, AC]", hand.__repr__())
+        self.assertEqual("[AS, AC]", str(hand))
 
 
 if __name__ == '__main__':

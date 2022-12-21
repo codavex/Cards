@@ -34,9 +34,6 @@ class Card:
     def __repr__(self):
         return "%s%s" % (repr(self._rank), self._suit.name)
 
-    def __str__(self):
-        return "%s of %s" % (str(self._rank), self._suit.value)
-
     def __eq__(self, other):
         return self._rank == other.rank
 

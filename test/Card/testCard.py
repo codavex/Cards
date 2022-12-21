@@ -22,11 +22,11 @@ class testCard(unittest.TestCase):
         self.assertEqual("AD", repr(self.card_ad))
 
     def test_card_str(self):
-        self.assertEqual("2 of Spades", str(self.card_2s))
-        self.assertEqual("Jack of Spades", str(self.card_js))
-        self.assertEqual("Queen of Clubs", str(self.card_qc))
-        self.assertEqual("King of Hearts", str(self.card_kh))
-        self.assertEqual("Ace of Diamonds", str(self.card_ad))
+        self.assertEqual("2S", str(self.card_2s))
+        self.assertEqual("JS", str(self.card_js))
+        self.assertEqual("QC", str(self.card_qc))
+        self.assertEqual("KH", str(self.card_kh))
+        self.assertEqual("AD", str(self.card_ad))
 
     def test_card_gt(self):
         self.assertTrue(self.card_ad > self.card_kh)
