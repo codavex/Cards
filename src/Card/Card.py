@@ -20,13 +20,14 @@ class Card:
 
     def constructor_with_string(self, card_str: str) -> None:
         length = len(card_str)
-        if length > 3:
+        if length > 3:  # normally 2 chars, but 3 for 10's
             raise ValueError("Bad argument in Card constructor")
-        suit_str = card_str.upper()[-1] # in case anyone uses lower case
+        suit_str = card_str.upper()[-1]  # in case anyone uses lower case
         rank_str = card_str[:length - 1]
         for suit in Suit:
             if suit.name == suit_str:
-                self.constructor_with_rank_and_suit(Rank(Rank.key_from_value(rank_str)), suit)
+                rank = Rank(Rank.key_from_value(rank_str))
+                self.constructor_with_rank_and_suit(rank, suit)
                 return
         raise ValueError("Bad argument in Card constructor")
 
@@ -37,25 +38,28 @@ class Card:
         return "%s of %s" % (str(self._rank), self._suit.value)
 
     def __eq__(self, other):
-        return self._rank == other._rank
+        return self._rank == other.get_rank()
 
     def __ne__(self, other):
-        return self._rank != other._rank
+        return self._rank != other.get_rank()
 
     def __lt__(self, other):
-        return self._rank < other._rank
+        return self._rank < other.get_rank()
 
     def __le__(self, other):
-        return self._rank <= other._rank
+        return self._rank <= other.get_rank()
 
     def __gt__(self, other):
-        return self._rank > other._rank
+        return self._rank > other.get_rank()
 
     def __ge__(self, other):
-        return self._rank >= other._rank
+        return self._rank >= other.get_rank()
 
     def get_rank(self):
         return self._rank
+
+    def get_value(self):
+        return self._rank.get_rank()
 
     def get_suit(self):
         return self._suit
