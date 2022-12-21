@@ -58,7 +58,7 @@ class Card:
 
     @property
     def value(self):
-        return self._rank.get_rank()
+        return self._rank.rank
 
     @property
     def suit(self):
