@@ -13,24 +13,30 @@ class testRank(unittest.TestCase):
         self.rank_a = Rank(14)
 
     def test_rank_repr(self):
-        test_cases = {
-            ("2", repr(self.rank_2)),
-            ("J", repr(self.rank_j)),
-            ("Q", repr(self.rank_q)),
-            ("K", repr(self.rank_k)),
-            ("A", repr(self.rank_a))
-        }
+        test_cases = (
+            ("2", self.rank_2),
+            ("J", self.rank_j),
+            ("Q", self.rank_q),
+            ("K", self.rank_k),
+            ("A", self.rank_a)
+        )
 
-        for expected_repr, actual_repr in test_cases:
-            with self.subTest(f"{expected_repr} == {actual_repr}"):
-                self.assertEqual(expected_repr, actual_repr)
+        for expected_repr, test_instance in test_cases:
+            with self.subTest(f"{expected_repr} == repr({test_instance})"):
+                self.assertEqual(expected_repr, repr(test_instance))
 
     def test_rank_str(self):
-        self.assertEqual("2", str(self.rank_2))
-        self.assertEqual("Jack", str(self.rank_j))
-        self.assertEqual("Queen", str(self.rank_q))
-        self.assertEqual("King", str(self.rank_k))
-        self.assertEqual("Ace", str(self.rank_a))
+        test_cases = (
+            ("2", self.rank_2),
+            ("Jack", self.rank_j),
+            ("Queen", self.rank_q),
+            ("King", self.rank_k),
+            ("Ace", self.rank_a)
+        )
+
+        for expected_repr, test_instance in test_cases:
+            with self.subTest(f"{expected_repr} == str({test_instance})"):
+                self.assertEqual(expected_repr, str(test_instance))
 
     def test_rank_gt(self):
         self.assertTrue(self.rank_a > self.rank_k)
