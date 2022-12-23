@@ -104,22 +104,22 @@ class testCard(unittest.TestCase):
 
     # noinspection PyUnusedLocal
     def test_bad_card_string_rank_1(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             card = Card("1S")
 
     # noinspection PyUnusedLocal
     def test_bad_card_string_rank_15(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             card = Card("15S")
 
     # noinspection PyUnusedLocal
     def test_bad_card_string_suit(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             card = Card("2T")
 
     # noinspection PyUnusedLocal
     def test_bad_card_string_too_long(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             card = Card("2 of Spades")
 
 

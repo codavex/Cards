@@ -79,17 +79,17 @@ class testRank(unittest.TestCase):
 
     # noinspection PyUnusedLocal
     def test_bad_rank_1(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             rank = Rank(1)
 
     # noinspection PyUnusedLocal
     def test_bad_rank_15(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             rank = Rank(15)
 
     # noinspection PyTypeChecker,PyUnusedLocal
     def test_bad_rank_str(self):
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             rank = Rank("2")
 
 
