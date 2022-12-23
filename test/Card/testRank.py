@@ -13,11 +13,17 @@ class testRank(unittest.TestCase):
         self.rank_a = Rank(14)
 
     def test_rank_repr(self):
-        self.assertEqual("2", repr(self.rank_2))
-        self.assertEqual("J", repr(self.rank_j))
-        self.assertEqual("Q", repr(self.rank_q))
-        self.assertEqual("K", repr(self.rank_k))
-        self.assertEqual("A", repr(self.rank_a))
+        test_cases = {
+            ("2", repr(self.rank_2)),
+            ("J", repr(self.rank_j)),
+            ("Q", repr(self.rank_q)),
+            ("K", repr(self.rank_k)),
+            ("A", repr(self.rank_a))
+        }
+
+        for expected_repr, actual_repr in test_cases:
+            with self.subTest(f"{expected_repr} == {actual_repr}"):
+                self.assertEqual(expected_repr, actual_repr)
 
     def test_rank_str(self):
         self.assertEqual("2", str(self.rank_2))
