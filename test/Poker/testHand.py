@@ -1,5 +1,4 @@
 import unittest
-from src.Card.Card import Card
 from src.Poker.Hand import Hand
 from src.Poker.Rank import Rank
 
