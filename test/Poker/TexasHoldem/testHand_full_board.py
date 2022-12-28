@@ -21,7 +21,7 @@ class testHand(unittest.TestCase):
 
         rank, best_hand = hole.rank_with_board(community)
         self.assertEqual(Rank.STRAIGHT_FLUSH, rank)
-        self.assertEqual("[AS, KS, QS, JS, 10S]", best_hand.__str__())
+        self.assertEqual("[AS, KS, QS, JS, 10S]", str(best_hand)
 
     def test_hand_four_oak(self):
         hole = Hand()
@@ -38,7 +38,7 @@ class testHand(unittest.TestCase):
 
         rank, best_hand = hole.rank_with_board(community)
         self.assertEqual(Rank.FOUR_OAK, rank)
-        self.assertEqual("[AS, AC, AH, AD, 2D]", best_hand.__str__())
+        self.assertEqual("[AS, AC, AH, AD, 2D]", str(best_hand))
 
     def test_hand_full_house(self):
         hole = Hand()
