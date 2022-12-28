@@ -28,7 +28,9 @@ class testHand(unittest.TestCase):
                 board = Hand()
                 board.build_from_str(test_board)
                 board.shuffle()
+
                 rank, best_hand = hole.rank_with_board(board)
+
                 self.assertEqual(expected_rank, rank)
                 self.assertRegex(str(best_hand), expected_best_regex)
 

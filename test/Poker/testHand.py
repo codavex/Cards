@@ -24,7 +24,9 @@ class testHand(unittest.TestCase):
                 hand = Hand()
                 hand.build_from_str(case)
                 hand.shuffle()
+
                 rank, best_hand = hand.rank()
+
                 self.assertEqual(expected_rank, rank)
                 self.assertRegex(str(best_hand), expected_best_regex)
 
