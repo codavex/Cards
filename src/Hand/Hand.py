@@ -1,3 +1,5 @@
+import random
+
 from src.Card.Card import Card
 
 
@@ -7,6 +9,9 @@ class Hand(list):
 
     def draw(self):
         return super().pop(0)
+
+    def shuffle(self):
+        random.shuffle(self)
 
     def build_from_str(self, hand_as_str: str) -> object:
         # to build a hand from a string depicting a hand
