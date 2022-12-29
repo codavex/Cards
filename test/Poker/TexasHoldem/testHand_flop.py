@@ -6,170 +6,44 @@ from src.Poker.Rank import Rank
 
 # noinspection PyPep8Naming
 class testHand(unittest.TestCase):
-    def test_hand_straight_flush(self):
-        hole = Hand()
-        community = Hand()
+    def test_hand_ranking(self):
+        test_cases = (
+            ("[AS, KS]", "[QS, JS, 10S]",
+             Rank.STRAIGHT_FLUSH, "\[AS, KS, QS, JS, 10S\]"),
+            ("[AS, AC]", "[AH, AD, 2D]",
+             Rank.FOUR_OAK, "\[A[SCHD], A[SCHD], A[SCHD], A[SCHD], 2D\]"),
+            ("[KH, KD]", "[KS, AS, AC]",
+             Rank.FULL_HOUSE, "\[K[SHD], K[SHD], K[SHD], A[SC], A[SC]\]"),
+            ("[AS, 7S]", "[5S, 3S, 2S]",
+             Rank.FLUSH, "\[AS, 7S, 5S, 3S, 2S\]"),
+            ("[9S, 8C]", "[7H, 6D, 5D]",
+             Rank.STRAIGHT, "\[9S, 8C, 7H, 6D, 5D\]"),
+            ("[5C, 4H]", "[3D, 2D, AS]",
+             Rank.STRAIGHT, "\[5C, 4H, 3D, 2D, AS\]"),
+            ("[AS, KH]", "[QD, JD, 10C]",
+             Rank.STRAIGHT, "\[AS, KH, QD, JD, 10C\]"),
+            ("[AS, AC]", "[AH, 3D, 2D]",
+             Rank.THREE_OAK, "\[A[SCH], A[SCH], A[SCH], 3D, 2D\]"),
+            ("[AS, AC]", "[KH, KD, 2D]",
+             Rank.TWO_TWO_OAK, "\[A[SC], A[SC], K[HD], K[HD], 2D\]"),
+            ("[AS, AC]", "[4D, 3H, 2D]",
+             Rank.TWO_OAK, "\[A[SC], A[SC], 4D, 3H, 2D\]"),
+            ("[AS, KC]", "[8H, 5D, 2D]",
+             Rank.HIGH_CARD, "\[AS, KC, 8H, 5D, 2D\]")
+        )
+        for test_hand, test_board, expected_rank, expected_regex in test_cases:
+            with self.subTest(f"test {test_hand},{test_board} = {expected_rank}"):
+                hand = Hand()
+                hand.build_from_str(test_hand)
+                hand.shuffle()
+                board = Hand()
+                board.build_from_str(test_board)
+                board.shuffle()
 
-        hole.append(Card("AS"))
-        hole.append(Card("KS"))
+                rank, best_hand = hand.rank_with_board(board)
 
-        community.append(Card("QS"))
-        community.append(Card("JS"))
-        community.append(Card("10S"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.STRAIGHT_FLUSH, rank)
-        self.assertEqual("[AS, KS, QS, JS, 10S]", str(best_hand))
-
-    def test_hand_four_oak(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("AC"))
-
-        community.append(Card("AH"))
-        community.append(Card("AD"))
-        community.append(Card("2D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.FOUR_OAK, rank)
-        self.assertEqual("[AS, AC, AH, AD, 2D]", str(best_hand))
-
-    def test_hand_full_house(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("AC"))
-
-        community.append(Card("KH"))
-        community.append(Card("KD"))
-        community.append(Card("KS"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.FULL_HOUSE, rank)
-        self.assertEqual("[KH, KD, KS, AS, AC]", str(best_hand))
-
-    def test_hand_flush(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("7S"))
-
-        community.append(Card("5S"))
-        community.append(Card("3S"))
-        community.append(Card("2S"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.FLUSH, rank)
-        self.assertEqual("[AS, 7S, 5S, 3S, 2S]", str(best_hand))
-
-    def test_hand_straight(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("9S"))
-        hole.append(Card("8C"))
-
-        community.append(Card("7H"))
-        community.append(Card("6D"))
-        community.append(Card("5D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.STRAIGHT, rank)
-        self.assertEqual("[9S, 8C, 7H, 6D, 5D]", str(best_hand))
-
-    def test_hand_straight_ace_low(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("5C"))
-
-        community.append(Card("4H"))
-        community.append(Card("2D"))
-        community.append(Card("3D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.STRAIGHT, rank)
-        self.assertEqual("[5C, 4H, 3D, 2D, AS]", str(best_hand))
-
-    def test_hand_straight_ace_high(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("10C"))
-
-        community.append(Card("KH"))
-        community.append(Card("JD"))
-        community.append(Card("QD"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.STRAIGHT, rank)
-        self.assertEqual("[AS, KH, QD, JD, 10C]", str(best_hand))
-
-    def test_hand_three_oak(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("AC"))
-
-        community.append(Card("AH"))
-        community.append(Card("3D"))
-        community.append(Card("2D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.THREE_OAK, rank)
-        self.assertEqual("[AS, AC, AH, 3D, 2D]", str(best_hand))
-
-    def test_hand_two_pair(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("AC"))
-
-        community.append(Card("KH"))
-        community.append(Card("KD"))
-        community.append(Card("2D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.TWO_TWO_OAK, rank)
-        self.assertEqual("[AS, AC, KH, KD, 2D]", str(best_hand))
-
-    def test_hand_two_oak(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("AC"))
-
-        community.append(Card("3H"))
-        community.append(Card("4D"))
-        community.append(Card("2D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.TWO_OAK, rank)
-        self.assertEqual("[AS, AC, 4D, 3H, 2D]", str(best_hand))
-
-    def test_hand_high_card(self):
-        hole = Hand()
-        community = Hand()
-
-        hole.append(Card("AS"))
-        hole.append(Card("KC"))
-
-        community.append(Card("8H"))
-        community.append(Card("5D"))
-        community.append(Card("2D"))
-
-        rank, best_hand = hole.rank_with_board(community)
-        self.assertEqual(Rank.HIGH_CARD, rank)
-        self.assertEqual("[AS, KC, 8H, 5D, 2D]", str(best_hand))
+                self.assertEqual(expected_rank, rank)
+                self.assertRegex(str(best_hand), expected_regex)
 
 
 if __name__ == '__main__':
